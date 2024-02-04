@@ -1,0 +1,7 @@
+.env
+dist/
+dist-web/
+node_modules/
+.firebase/
+*-debug.log
+cypress/screenshots
