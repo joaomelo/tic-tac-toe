@@ -1,11 +1,6 @@
 <script setup>
-// import { useDependencies } from "@lib";
-// import { onMounted } from "vue";
-
-// const { helmsman } = useDependencies();
-// onMounted(() => helmsman.solve());
+import { BoardBase } from "@view";
 </script>
 <template>
-  <p>tic tac toe</p>
-  <!-- <router-view /> -->
+  <board-base />
 </template>

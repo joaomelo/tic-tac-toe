@@ -1,8 +1,9 @@
 # folders
 
+main: start up
 body: rules
 view: pure presentation
-main: start up and translation between body and view
+control: two-way translation between body and view
 
 # design
 

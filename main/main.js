@@ -1,3 +1,4 @@
+import "@joaomelo/reset";
 import { name, version } from "@main/../package.json";
 import { createApp } from "vue";
 
