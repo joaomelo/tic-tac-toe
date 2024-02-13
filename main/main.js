@@ -1,4 +1,5 @@
 import "@joaomelo/reset";
+import "@joaomelo/tokens";
 import { name, version } from "@main/../package.json";
 import { createApp } from "vue";
 
