@@ -18,7 +18,6 @@ export default defineConfig(() => {
       alias: {
         "@body": pathTo("./body"),
         "@main": pathTo("./main"),
-        "@service": pathTo("./service"),
         "@shared": pathTo("./shared"),
         "@view": pathTo("./view"),
       },
