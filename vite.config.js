@@ -1,19 +1,20 @@
-import { fileURLToPath, URL } from "node:url";
-import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import { URL, fileURLToPath } from "node:url";
+import { defineConfig } from "vite";
 
-const pathTo = (path) => fileURLToPath(new URL(path, import.meta.url));
+const pathTo = path => fileURLToPath(new URL(path, import.meta.url));
 
 export default defineConfig(() => {
   return {
-    plugins: [vue()],
-    root: "./main",
-    publicDir: "../assets",
-    envDir: "../",
-    server: {
-      port: 8081,
-      strictPort: true,
+    build: {
+      assetsDir: ".",
+      emptyOutDir: true,
+      outDir: "../dist",
+      sourcemap: true,
     },
+    envDir: "../",
+    plugins: [vue()],
+    publicDir: "../assets",
     resolve: {
       alias: {
         "@body": pathTo("./body"),
@@ -22,11 +23,10 @@ export default defineConfig(() => {
         "@view": pathTo("./view"),
       },
     },
-    build: {
-      outDir: "../dist",
-      assetsDir: ".",
-      emptyOutDir: true,
-      sourcemap: true,
+    root: "./main",
+    server: {
+      port: 8081,
+      strictPort: true,
     },
     test: {
       include: ["../**/*.test.js"],
