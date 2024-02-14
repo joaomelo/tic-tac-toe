@@ -18,6 +18,7 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         "@body": pathTo("./body"),
+        "@control": pathTo("./control"),
         "@main": pathTo("./main"),
         "@shared": pathTo("./shared"),
         "@view": pathTo("./view"),

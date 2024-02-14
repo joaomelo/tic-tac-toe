@@ -1,3 +1,6 @@
+import { Game } from "@body";
+import { Control } from "@control";
+import { Globals } from "@joaomelo/globals";
 import "@joaomelo/reset";
 import "@joaomelo/tokens";
 import { name, version } from "@main/../package.json";
@@ -9,6 +12,8 @@ export function initApp(elementId) {
   console.info(`${name} v${version}`);
 
   const app = createApp(App);
+  const game = new Game();
+  const control = new Control(game);
 
   // const i18n = new I18n({ locale: navigator.language, messages });
   // app.use(i18n);
@@ -16,14 +21,12 @@ export function initApp(elementId) {
   // const helmsman = new Helmsman();
   // app.use(helmsman);
 
-  // const dependencies = new Dependencies({
-  //   artifacts,
-  //   gatekeeper,
-  //   helmsman,
-  //   tags,
-  // });
-  // window.$dependencies = dependencies;
-  // app.use(dependencies);
+  const globals = new Globals({
+    control,
+    game,
+  });
+  window.$dependencies = globals;
+  app.use(globals);
 
   app.mount(elementId);
 }
