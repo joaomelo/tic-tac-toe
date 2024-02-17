@@ -10,7 +10,7 @@
     "test:unit": "vitest run",
     "test:e2e:open": "concurrently -s \"first\" -k \"npm run dev\" \"npm run dev:ready && cypress open --e2e --browser chrome\"",
     "test:e2e:run": "concurrently -s \"first\" -k \"npm run dev\" \"npm run dev:ready && cypress run --e2e\"",
-    "lint": "eslint --ext .js,.vue --fix body/ main/ view/ shared/ cypress/",
+    "lint": "eslint --ext .js,.vue --fix main/ body/ view/ control/",
     "build": "vite build",
     "deploy": "firebase deploy",
     "release": "release-it --ci --verbose"
