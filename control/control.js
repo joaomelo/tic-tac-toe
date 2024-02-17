@@ -13,6 +13,12 @@ export class Control {
       case "board": {
         return this.game.board;
       }
+      case "status": {
+        return this.game.status;
+      }
+      case "player": {
+        return this.game.player;
+      }
     }
   }
 

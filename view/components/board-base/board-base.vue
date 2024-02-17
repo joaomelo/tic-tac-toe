@@ -4,7 +4,7 @@ import { isValid } from "./valid";
 
 defineProps({
   fill: {
-    default: () => Array(9).fill(null),
+    required: true,
     type: Array,
     validator: (values) => {
       if (!Array.isArray(values)) return false;

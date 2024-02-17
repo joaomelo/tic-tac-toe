@@ -1,8 +1,8 @@
 <script setup>
-import { computed } from "vue";
-
+import { UserAvatar } from "../user-avatar";
 import { isValid } from "./valid";
-const props = defineProps({
+
+defineProps({
   value: {
     default: null,
     type: Number,
@@ -10,19 +10,13 @@ const props = defineProps({
   },
 });
 defineEmits(["click"]);
-
-const representation = computed(() => props.value === null
-  ? ""
-  : props.value === 0
-    ? "X"
-    : "O");
 </script>
 <template>
   <div
     class="board-base-cell"
     @click="$emit('click')"
   >
-    {{ representation }}
+    <user-avatar :value="value" />
   </div>
 </template>
 <style>
