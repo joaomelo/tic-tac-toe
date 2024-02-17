@@ -9,6 +9,7 @@ const { control } = useInject();
     <heads-up
       :status="control.bind('status')"
       :player="control.bind('player')"
+      class="page-play-heads-up"
     />
     <board-base
       :fill="control.bind('board')"
@@ -17,4 +18,7 @@ const { control } = useInject();
   </div>
 </template>
 <style scoped>
+.page-play-heads-up {
+  margin-bottom: var(--size-40);
+}
 </style>

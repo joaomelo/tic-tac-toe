@@ -24,16 +24,18 @@ const decideClasses = i => ({
 </script>
 <template>
   <div class="board-base">
-    <template
-      v-for="(value, index) in fill"
-      :key="index"
-    >
-      <board-base-cell
-        :value="value"
-        :class="decideClasses(index)"
-        @click="$emit('attempt', index)"
-      />
-    </template>
+    <div class="board-base-cells">
+      <template
+        v-for="(value, index) in fill"
+        :key="index"
+      >
+        <board-base-cell
+          :value="value"
+          :class="decideClasses(index)"
+          @click="$emit('attempt', index)"
+        />
+      </template>
+    </div>
   </div>
 </template>
 <style>
@@ -42,6 +44,12 @@ const decideClasses = i => ({
 }
 
 .board-base {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-base-cells {
   display: grid;
   grid-template-columns: max-content max-content max-content;
 }
