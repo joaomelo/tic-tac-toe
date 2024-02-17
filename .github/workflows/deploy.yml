@@ -6,7 +6,7 @@ on:
       - "main"
 
 jobs:
-  qa:
+  modules:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,8 +15,36 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
+          # this do not cache node_modules but some npm cache
           cache: "npm"
-      - run: npm ci
+      - name: cache modules
+        id: cache-modules    
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-modules-
+      - name: install modules
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+  qa:
+    needs: [modules]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          # this do not cache node_modules but some npm cache
+          cache: "npm"
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-modules-
       # - run: npm test
       - run: npm run lint
 
@@ -36,7 +64,11 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
-      - run: npm ci
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-modules-
       - run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,7 +84,11 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
-      - run: npm ci
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-modules-
       - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
