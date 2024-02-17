@@ -9,6 +9,7 @@ const props = defineProps({
     validator: isValid,
   },
 });
+defineEmits(["click"]);
 
 const representation = computed(() => props.value === null
   ? ""
@@ -17,7 +18,10 @@ const representation = computed(() => props.value === null
     : "O");
 </script>
 <template>
-  <div class="board-base-cell">
+  <div
+    class="board-base-cell"
+    @click="$emit('click')"
+  >
     {{ representation }}
   </div>
 </template>

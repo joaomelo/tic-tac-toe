@@ -1,6 +1,7 @@
 <script setup>
 import BoardBaseCell from "./board-base-cell.vue";
 import { isValid } from "./valid";
+
 defineProps({
   fill: {
     default: () => Array(9).fill(null),
@@ -12,41 +13,27 @@ defineProps({
     },
   },
 });
+defineEmits(["attempt"]);
+
+const decideClasses = i => ({
+  bottom: i === 3 || i === 4 || i === 5,
+  left: i === 1 || i === 4 || i === 7,
+  right: i === 1 || i === 4 || i === 7,
+  top: i === 3 || i === 4 || i === 5,
+});
 </script>
 <template>
   <div class="board-base">
-    <board-base-cell
-      :value="fill[0]"
-    />
-    <board-base-cell
-      :value="fill[1]"
-      class="right left"
-    />
-    <board-base-cell
-      :value="fill[2]"
-    />
-    <board-base-cell
-      :value="fill[3]"
-      class="bottom top"
-    />
-    <board-base-cell
-      :value="fill[4]"
-      class="bottom top right left"
-    />
-    <board-base-cell
-      :value="fill[5]"
-      class="bottom top"
-    />
-    <board-base-cell
-      :value="fill[6]"
-    />
-    <board-base-cell
-      :value="fill[7]"
-      class="right left"
-    />
-    <board-base-cell
-      :value="fill[8]"
-    />
+    <template
+      v-for="(value, index) in fill"
+      :key="index"
+    >
+      <board-base-cell
+        :value="value"
+        :class="decideClasses(index)"
+        @click="$emit('attempt', index)"
+      />
+    </template>
   </div>
 </template>
 <style>

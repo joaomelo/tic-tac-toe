@@ -15,17 +15,11 @@ export function initApp(elementId) {
   const game = new Game();
   const control = new Control(game);
 
-  // const i18n = new I18n({ locale: navigator.language, messages });
-  // app.use(i18n);
-
-  // const helmsman = new Helmsman();
-  // app.use(helmsman);
-
   const globals = new Globals({
     control,
     game,
   });
-  window.$dependencies = globals;
+  window.$globals = globals;
   app.use(globals);
 
   app.mount(elementId);
