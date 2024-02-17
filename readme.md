@@ -1,6 +1,6 @@
 # what
 
-minimal implementation of the tic-tac-toe game
+minimal web implementation of the tic-tac-toe game
 
 # folders
 
