@@ -1,0 +1,20 @@
+{
+  "git": {
+    "tagName": "v${version}",
+    "commitMessage": "chore[no ci]: release v${version}"
+  },
+  "npm": {
+    "skipChecks": true,
+    "publish": false
+  },
+  "github": {
+    "release": false
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": {
+        "name": "conventionalcommits"
+      }
+    }
+  }
+}
