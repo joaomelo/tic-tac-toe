@@ -1,19 +1,31 @@
 <script setup>
-import { useInject } from "@joaomelo/globals";
 import { BoardBase, HeadsUp } from "@view";
-
-const { control } = useInject();
+defineProps({
+  fill: {
+    default: null,
+    type: Array,
+  },
+  player: {
+    default: null,
+    type: Number,
+  },
+  status: {
+    default: null,
+    type: String,
+  },
+});
+defineEmits(["cell-click"]);
 </script>
 <template>
   <div>
     <heads-up
-      :status="control.bind('status')"
-      :player="control.bind('player')"
+      :status="status"
+      :player="player"
       class="page-play-heads-up"
     />
     <board-base
-      :fill="control.bind('board')"
-      @attempt="control.handle({ name: 'attempt', payload: $event })"
+      :fill="fill"
+      @cell-click="$emit('cell-click', $event)"
     />
   </div>
 </template>

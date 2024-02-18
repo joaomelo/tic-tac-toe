@@ -1,13 +1,17 @@
 import { reactive } from "vue";
 
+import { Helmsman } from "./helmsman";
+
 export class Control {
   game;
+  helmsman;
 
   constructor(game) {
     this.game = reactive(game);
+    this.helmsman = new Helmsman();
   }
 
-  // returns reactive data pointers to be used in the ui
+  // returns pointers to reactive data to be used in the ui
   bind(name) {
     switch (name) {
       case "board": {
@@ -25,15 +29,20 @@ export class Control {
   // process ui events
   handle({ name, payload }) {
     switch (name) {
-      case "ready": {
+      case "app-ready": {
         this.game.start();
+        this.helmsman.play();
         break;
       }
 
-      case "attempt": {
+      case "move": {
         this.game.move(payload);
         break;
       }
     }
+  }
+
+  install(app) {
+    this.helmsman.install(app);
   }
 }

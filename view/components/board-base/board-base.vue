@@ -13,7 +13,7 @@ defineProps({
     },
   },
 });
-defineEmits(["attempt"]);
+defineEmits(["cell-click"]);
 
 const decideClasses = i => ({
   bottom: i === 3 || i === 4 || i === 5,
@@ -32,7 +32,7 @@ const decideClasses = i => ({
         <board-base-cell
           :value="value"
           :class="decideClasses(index)"
-          @click="$emit('attempt', index)"
+          @click="$emit('cell-click', index)"
         />
       </template>
     </div>

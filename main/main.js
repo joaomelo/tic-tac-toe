@@ -12,13 +12,12 @@ export function initApp(elementId) {
   console.info(`${name} v${version}`);
 
   const app = createApp(App);
+
   const game = new Game();
   const control = new Control(game);
+  app.use(control);
 
-  const globals = new Globals({
-    control,
-    game,
-  });
+  const globals = new Globals({ control, game });
   window.$globals = globals;
   app.use(globals);
 
