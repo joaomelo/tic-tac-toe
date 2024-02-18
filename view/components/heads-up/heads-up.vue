@@ -11,12 +11,14 @@ defineProps({
     type: String,
   },
 });
+
 </script>
 <template>
   <div class="heads-up">
-    <span>{{ status }}</span>
-    <span class="heads-up-separator" />
-    <span v-if="status !== 'DRAW'"><user-avatar :value="player" /></span>
+    <span v-if="status === 'DRAW'">draw</span>
+    <span v-else-if="status === 'WON'">player <user-avatar :value="player" /> won</span>
+    <span v-else-if="status === 'PLAYER_TURN'">player <user-avatar :value="player" /> turn</span>
+    <span v-else>invalid status</span>
   </div>
 </template>
 <style scoped>

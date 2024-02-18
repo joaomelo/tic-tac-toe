@@ -18,6 +18,9 @@ defineEmits(["cell-click"]);
 </script>
 <template>
   <div>
+    <h1 class="page-play-heading">
+      tic tac toe
+    </h1>
     <heads-up
       :status="status"
       :player="player"
@@ -30,6 +33,12 @@ defineEmits(["cell-click"]);
   </div>
 </template>
 <style scoped>
+.page-play-heading {
+  font-size: var(--font-size-25);
+  margin-block: var(--size-20);
+  text-align: center;
+}
+
 .page-play-heads-up {
   margin-bottom: var(--size-40);
 }
