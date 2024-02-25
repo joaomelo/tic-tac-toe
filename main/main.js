@@ -1,10 +1,9 @@
-import { Game } from "@body";
-import { Control } from "@control";
-import { Globals } from "@joaomelo/globals";
+import { createGame } from "@body";
+import { createRouter } from "@control";
 import "@joaomelo/reset";
 import "@joaomelo/tokens";
 import { name, version } from "@main/../package.json";
-import { createApp } from "vue";
+import { createApp, reactive } from "vue";
 
 import App from "./app.vue";
 
@@ -13,13 +12,13 @@ export function initApp(elementId) {
 
   const app = createApp(App);
 
-  const game = new Game();
-  const control = new Control(game);
-  app.use(control);
+  const router = createRouter();
+  app.use(router);
 
-  const globals = new Globals({ control, game });
-  window.$globals = globals;
-  app.use(globals);
+  const game = createGame();
+  const state = reactive({ game, router });
+  window.$state = state;
+  app.provide("state", state);
 
   app.mount(elementId);
 }

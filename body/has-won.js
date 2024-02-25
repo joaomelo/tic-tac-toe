@@ -1,4 +1,4 @@
-export function hasWon(board, player) {
+export function hasWon({ board, player }) {
   const combos = [
     [0, 1, 2],
     [3, 4, 5],

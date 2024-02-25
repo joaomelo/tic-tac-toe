@@ -45,8 +45,8 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-modules-
-      # - run: npm test
       - run: npm run lint
+      # - run: npm test
 
   bump:
     needs: [qa]

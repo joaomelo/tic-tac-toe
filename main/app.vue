@@ -1,9 +1,9 @@
 <script setup>
-import { useInject } from "@joaomelo/globals";
-import { onMounted } from "vue";
+import { handle } from "@control";
+import { inject, onMounted } from "vue";
 
-const { control } = useInject();
-onMounted(() => control.handle({ name: "app-ready" }));
+const state = inject("state");
+onMounted(() => handle({ name: "app-ready", state }));
 </script>
 <template>
   <router-view />
