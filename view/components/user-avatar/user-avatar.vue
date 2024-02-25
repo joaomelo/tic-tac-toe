@@ -1,5 +1,7 @@
 <script setup>
-import { computed } from "vue";
+import { toRef } from "vue";
+
+import { useName } from "../use-name";
 
 const props = defineProps({
   value: {
@@ -8,11 +10,7 @@ const props = defineProps({
   },
 });
 
-const representation = computed(() => props.value === null
-  ? ""
-  : props.value === 0
-    ? "X"
-    : "O");
+const representation = useName(toRef(props, "value"));
 </script>
 <template>
   <span>{{ representation }}</span>
