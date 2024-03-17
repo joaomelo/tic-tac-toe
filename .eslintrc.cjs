@@ -13,12 +13,22 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["eslint:recommended", "plugin:perfectionist/recommended-natural", "plugin:vue/vue3-recommended", ],
+  extends: [
+    "eslint:recommended", 
+    "plugin:perfectionist/recommended-natural", 
+    "plugin:vue/vue3-recommended",     
+    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
+  ],
   plugins: ['@stylistic'],
   parser: "vue-eslint-parser",
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: "latest",
     sourceType: "module",
+    project: true,
+    tsconfigRootDir: __dirname,
+    extraFileExtensions: [".vue"],
   },
   rules: {
     'no-duplicate-imports': 'error',
@@ -38,5 +48,8 @@ module.exports = {
     'perfectionist/sort-vue-attributes': 'off',
 
     "vue/component-definition-name-casing": ["error", "kebab-case"],
+
+    "@typescript-eslint/no-unsafe-member-access": 'off',
+    "@typescript-eslint/no-unsafe-assignment": 'off'
   },
 };

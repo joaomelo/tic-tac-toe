@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["es2021", "DOM", "DOM.Iterable"],
+    "types": [],
+    "module": "ESNext",
+    "outDir": "./dist",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,    
+    "jsx": "preserve",
+    "jsxImportSource": "vue",    
+    "noImplicitThis": true,
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,    
+    "paths": {
+      "@body": ["./body/index.ts"],
+      "@control": ["./control/index.ts"],
+      "@lib": ["./lib/index.ts"],
+      "@main": ["./main/index.ts"],
+      "@view": ["./view/index.ts"]
+    }    
+  },
+  "include": ["./body/**/*.ts", "./control/**/*.ts", "./lib/**/*.ts", "./main/**/*.ts", "./view/**/*.ts", "./vite.config.ts"],
+  "exclude": ["node_modules"]
+}

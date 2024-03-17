@@ -2,7 +2,7 @@ import vue from "@vitejs/plugin-vue";
 import { URL, fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 
-const pathTo = path => fileURLToPath(new URL(path, import.meta.url));
+const pathTo = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 export default defineConfig(() => {
   return {
@@ -19,6 +19,7 @@ export default defineConfig(() => {
       alias: {
         "@body": pathTo("./body"),
         "@control": pathTo("./control"),
+        "@lib": pathTo("./lib"),
         "@main": pathTo("./main"),
         "@shared": pathTo("./shared"),
         "@view": pathTo("./view"),
@@ -30,7 +31,7 @@ export default defineConfig(() => {
       strictPort: true,
     },
     test: {
-      include: ["../**/*.test.js"],
+      include: ["../**/*.test.js", "../**/*.test.ts"],
     },
   };
 });
